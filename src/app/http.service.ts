@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   baseUrl = 'http://localhost:3000/api/';
-  imageBaseUrl = 'http://localhost:3000/images/logo/';
+  imageBaseUrl = 'http://localhost:3000/images/';
 
   constructor(private http: HttpClient) {}
 
