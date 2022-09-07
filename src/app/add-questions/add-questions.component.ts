@@ -155,10 +155,10 @@ export class AddQuestionsComponent implements OnInit {
   fetchAllQuestions() {
     this.httpService.fetchAllQuestions().subscribe((result: any) => {
       console.log('result' , result.data);
-      if (result?.data?.success) {
-        this.questions = result?.data?.data?.questions;
+      if (result?.success) {
+        this.questions = result?.data?.questions;
       } else {
-        this._snackBar.open(result?.data?.message, 'close', {
+        this._snackBar.open(result?.message, 'close', {
           duration: 300,
         });
       }
