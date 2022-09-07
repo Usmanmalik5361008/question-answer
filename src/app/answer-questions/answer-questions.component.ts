@@ -28,13 +28,13 @@ export class AnswerQuestionsComponent implements OnInit {
     this.httpService
       .getSingleQuestion(this.route.snapshot.paramMap.get('id'))
       .subscribe((result: any) => {
-        if (result?.data?.success) {
+        if (result?.success) {
           this.question = {
-            ...result?.data?.data,
-            logo: this.httpService.imageBaseUrl + result?.data?.data?.logo,
+            ...result?.data,
+            logo: this.httpService.imageBaseUrl + result?.data?.logo,
           };
         } else {
-          this._snackBar.open(result?.data?.message, 'close', {
+          this._snackBar.open(result?.message, 'close', {
             duration: 300,
           });
         }
@@ -60,15 +60,14 @@ export class AnswerQuestionsComponent implements OnInit {
       comment: this.comment,
       username: '',
     };
-    console.log('body', body);
+
     this.httpService.answerQuestion(body).subscribe((result: any) => {
-      this._snackBar.open(result?.data?.message, 'close', {
+      this._snackBar.open(result?.message, 'close', {
         duration: 300,
       });
     });
   }
-  setComment(value: any) {
-    console.log('value', value);
+  setComment(value: any) {    
     this.comment = value;
   }
 }
