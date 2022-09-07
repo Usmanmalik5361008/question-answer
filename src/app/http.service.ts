@@ -11,7 +11,7 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   fetchAllQuestions() {
-    return this.http.get(`${this.baseUrl}getQuestions`);
+    return this.http.get(`${this.baseUrl}question/getQuestions`);
   }
   postQuestion(body: any) {
     return this.http.post(`${this.baseUrl}question/addQuestion`, body);
