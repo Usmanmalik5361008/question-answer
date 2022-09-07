@@ -153,25 +153,15 @@ export class AddQuestionsComponent implements OnInit {
   }
 
   fetchAllQuestions() {
-    this.httpService.fetchAllQuestions().subscribe(
-      (result: any) => {
-        if (result?.data?.success) {
-          this.questions = result?.data?.data?.questions;
-        } else {
-          this._snackBar.open(result?.data?.message, 'close', {
-            duration: 300,
-          });
-        }
-      },
-      (error) => {
-        this._snackBar.open(
-          'Something went wrong! Check Connection with server',
-          'close',
-          {
-            duration: 3000,
-          }
-        );
+    this.httpService.fetchAllQuestions().subscribe((result: any) => {
+      console.log('result' , result.data);
+      if (result?.data?.success) {
+        this.questions = result?.data?.data?.questions;
+      } else {
+        this._snackBar.open(result?.data?.message, 'close', {
+          duration: 300,
+        });
       }
-    );
+    });
   }
 }
