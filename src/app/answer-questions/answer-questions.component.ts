@@ -20,10 +20,28 @@ export class AnswerQuestionsComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getSingleQuestion();
+  }
+
+  getSingleQuestion() {
+    this.httpService
+      .getSingleQuestion(this.route.snapshot.paramMap.get('id'))
+      .subscribe((result: any) => {
+        if (result?.data?.success) {
+          this.question = {
+            ...result?.data?.data,
+            logo: this.httpService.imageBaseUrl + result?.data?.data?.logo,
+          };
+        } else {
+          this._snackBar.open(result?.data?.message, 'close', {
+            duration: 300,
+          });
+        }
+      });
+  }
 
   handleSwipe(direction: string) {
-    console.log('vdirection', direction);
     let answer: boolean = false;
     switch (direction) {
       case 'swipeleft':
@@ -50,7 +68,7 @@ export class AnswerQuestionsComponent implements OnInit {
     });
   }
   setComment(value: any) {
-    console.log('value' ,value);
+    console.log('value', value);
     this.comment = value;
   }
 }
