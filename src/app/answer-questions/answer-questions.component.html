@@ -1,0 +1,9 @@
+<div class="page-container question-answer-container">
+  <app-card
+    [parentSubject]="parentSubject"
+    (onSwipe)="handleSwipe($event)"
+    (onComment)="setComment($event)"
+    [question]="question"
+  >
+  </app-card>
+</div>

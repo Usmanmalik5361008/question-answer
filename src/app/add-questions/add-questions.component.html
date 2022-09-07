@@ -1,0 +1,54 @@
+<div class="add-view-questions-container page-container">
+  <div class="add-view-header">
+    <h1>Questions</h1>
+    <button
+      *ngIf="!addingMore"
+      class="primary-outlined-button"
+      (click)="addingMore = true"
+    >
+      Add More
+    </button>
+  </div>
+  <div *ngIf="addingMore" class="question-to-add">
+    <input
+      type="file"
+      class="uploader"
+      #uploader
+      (change)="handleFileSelection($event)"
+    />
+    <div class="add-image">
+      <button class="primary-button" (click)="handleUploadClick()">
+        Add Logo
+      </button>
+
+      <img [src]="picImage" alt="smiley" *ngIf="picImage.length > 0" />
+    </div>
+
+    <input
+      placeholder="Add Title"
+      name="title"
+      (change)="handleInputChange($event)"
+    />
+    <textarea
+      placeholder="Add Question"
+      name="text"
+      (change)="handleInputChange($event)"
+    ></textarea>
+    <button class="primary-button text-right" (click)="addQuestionToList()">
+      Add to List
+    </button>
+  </div>
+  <ng-container *ngIf="questions.length > 0">
+    <div class="questions-wrapper" [@cardAnimation]="questions.length">
+      <div *ngFor="let question of questions" class="question-card">
+        <p>{{ question.text }}</p>
+        <button
+          (click)="handleAnswerClick(question.id)"
+          class="primary-button text-right"
+        >
+          Answer
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

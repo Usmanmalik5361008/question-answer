@@ -1,0 +1,24 @@
+<div
+  class="swipeable-card"
+  [@cardAnimator]="animationState"
+  (@cardAnimator.done)="resetAnimationState($event)"
+  (swipeleft)="startAnimation('swipeleft')"
+  (swiperight)="startAnimation('swiperight')"
+  (swipeup)="startAnimation('swipeup')"
+  *ngIf="question"
+>
+  <div class="question-header">
+    <img [src]="question.logo" alt="logo" />
+    <p class="title">{{ question?.title }}</p>
+  </div>
+  <p class="text">
+    {{ question?.text }}
+  </p>
+  <p class="subtitle-text">
+    *Swiping right would be a yes and swiping left would be no.
+  </p>
+  <div class="comment-box" [@visibility]="commentVisible">
+    <textarea (change)="onCommentChange($event)"></textarea>
+    <button class="primary-button">Submit</button>
+  </div>
+</div>
