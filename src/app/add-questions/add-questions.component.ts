@@ -143,6 +143,7 @@ export class AddQuestionsComponent implements OnInit {
       .subscribe((result: any) => {
         if (result.success) {
           this.fetchAllQuestions();
+          this.questionToAdd = new FormData();
         } else {
           this._snackBar.open(result?.message, 'close', {
             duration: 300,
