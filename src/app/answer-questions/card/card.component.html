@@ -8,7 +8,7 @@
   *ngIf="question"
 >
   <div class="question-header">
-    <img [src]="question.logo" alt="logo"/>
+    <img [src]="question.logo" alt="logo" />
     <p class="title">{{ question?.title }}</p>
   </div>
   <p class="text">
@@ -19,6 +19,5 @@
   </p>
   <div class="comment-box" [@visibility]="commentVisible">
     <textarea (change)="onCommentChange($event)"></textarea>
-    <button class="primary-button">Submit</button>
   </div>
 </div>
